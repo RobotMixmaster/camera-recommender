@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="style.css" />
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>카메라 추천기</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>카메라 추천 시스템</h1>
+  <form id="cameraForm">
+    <label>예산 (₩): <input type="number" name="budget" required /></label><br />
+    <label>중고 허용: <input type="checkbox" name="used" /></label><br />
+    <label>촬영 용도: <input type="text" name="purpose" required /></label><br />
+    <label>환경 조건: <input type="text" name="environment" /></label><br />
+    <label>기대 사항: <input type="text" name="expectations" /></label><br />
+    <label>RAW 후보정 할 예정인가요? <input type="checkbox" name="raw" /></label><br />
+    <label>렌즈 타입: 
+      <select name="lens">
+        <option value="모름">모름</option>
+        <option value="광각">광각</option>
+        <option value="표준">표준</option>
+        <option value="망원">망원</option>
+      </select>
+    </label><br />
+    <label>카메라 크기/형태: <input type="text" name="size" /></label><br />
+    <label>렌즈 교환식 여부:
+      <select name="interchangeable">
+        <option value="모름">모름</option>
+        <option value="렌즈교환식">렌즈교환식</option>
+        <option value="똑딱이">똑딱이</option>
+      </select>
+    </label><br /><br />
+    <button type="submit">추천 받기</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
