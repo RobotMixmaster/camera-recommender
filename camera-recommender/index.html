@@ -1,88 +1,108 @@
-<link rel="stylesheet" href="style.css" />
-
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>카메라 추천기</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camera Recommender</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>카메라 추천 시스템</h1>
-  <form id="cameraForm">
-    <label>예산 (₩): <input type="number" name="budget" required /></label><br />
-    <label>중고 허용: <input type="checkbox" name="used" /></label><br />
-    <label>촬영 용도: <input type="text" name="purpose" required /></label><br />
-    <label>환경 조건: <input type="text" name="environment" /></label><br />
-    <label>기대 사항: <input type="text" name="expectations" /></label><br />
-    <label>RAW 후보정 할 예정인가요? <input type="checkbox" name="raw" /></label><br />
-    <label>렌즈 타입: 
-      <select name="lens">
-        <option value="모름">모름</option>
-        <option value="광각">광각</option>
-        <option value="표준">표준</option>
-        <option value="망원">망원</option>
-      </select>
-    </label><br />
-    <label>카메라 크기/형태: <input type="text" name="size" /></label><br />
-    <label>렌즈 교환식 여부:
-      <select name="interchangeable">
-        <option value="모름">모름</option>
-        <option value="렌즈교환식">렌즈교환식</option>
-        <option value="똑딱이">똑딱이</option>
-      </select>
-    </label><br /><br />
-    <button type="submit">추천 받기</button>
-  </form>
+<body class="bg-gray-50 text-gray-900">
+  <div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">📷 카메라 추천 시스템</h1>
 
-  <div id="result"></div>
+    <!-- 필터 섹션 -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div>
+        <label class="block mb-1">예산 (만원)</label>
+        <input id="budgetInput" type="number" min="0" max="1000" placeholder="예: 150" class="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label class="block mb-1">센서 크기</label>
+        <select id="sensorFilter" class="w-full p-2 border rounded">
+          <option value="">전체</option>
+          <option value="APS-C">APS-C</option>
+          <option value="Full frame">Full frame</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-1">RAW 지원</label>
+        <select id="rawFilter" class="w-full p-2 border rounded">
+          <option value="">전체</option>
+          <option value="true">지원</option>
+          <option value="false">비지원</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-1">정렬 기준</label>
+        <select id="sortOption" class="w-full p-2 border rounded">
+          <option value="price">가격순</option>
+          <option value="weight">무게순</option>
+        </select>
+      </div>
+    </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
-<link rel="stylesheet" href="style.css" />
+    <button onclick="filterCameras()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mb-6">추천받기</button>
 
+    <!-- 결과 출력 -->
+    <div id="results" class="grid grid-cols-1 gap-4"></div>
+  </div>
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>카메라 추천기</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>카메라 추천 시스템</h1>
-  <form id="cameraForm">
-    <label>예산 (₩): <input type="number" name="budget" required /></label><br />
-    <label>중고 허용: <input type="checkbox" name="used" /></label><br />
-    <label>촬영 용도: <input type="text" name="purpose" required /></label><br />
-    <label>환경 조건: <input type="text" name="environment" /></label><br />
-    <label>기대 사항: <input type="text" name="expectations" /></label><br />
-    <label>RAW 후보정 할 예정인가요? <input type="checkbox" name="raw" /></label><br />
-    <label>렌즈 타입: 
-      <select name="lens">
-        <option value="모름">모름</option>
-        <option value="광각">광각</option>
-        <option value="표준">표준</option>
-        <option value="망원">망원</option>
-      </select>
-    </label><br />
-    <label>카메라 크기/형태: <input type="text" name="size" /></label><br />
-    <label>렌즈 교환식 여부:
-      <select name="interchangeable">
-        <option value="모름">모름</option>
-        <option value="렌즈교환식">렌즈교환식</option>
-        <option value="똑딱이">똑딱이</option>
-      </select>
-    </label><br /><br />
-    <button type="submit">추천 받기</button>
-  </form>
+  <script>
+    let cameraData = [];
 
-  <div id="result"></div>
+    async function loadCameras() {
+      const res = await fetch('./db/cameras.json');
+      cameraData = await res.json();
+      filterCameras();
+    }
 
-  <script src="script.js"></script>
+    function filterCameras() {
+      const budget = parseInt(document.getElementById('budgetInput').value) * 10000 || Infinity;
+      const sensor = document.getElementById('sensorFilter').value;
+      const raw = document.getElementById('rawFilter').value;
+      const sort = document.getElementById('sortOption').value;
+
+      let filtered = cameraData.filter(cam => {
+        return (!sensor || cam.sensor === sensor) &&
+               (raw === '' || cam.raw.toString() === raw) &&
+               (!cam.price || cam.price <= budget);
+      });
+
+      if (sort === 'price') {
+        filtered.sort((a, b) => (a.price || Infinity) - (b.price || Infinity));
+      } else if (sort === 'weight') {
+        filtered.sort((a, b) => (a.weight || Infinity) - (b.weight || Infinity));
+      }
+
+      displayResults(filtered);
+    }
+
+    function displayResults(cameras) {
+      const container = document.getElementById('results');
+      container.innerHTML = '';
+      if (cameras.length === 0) {
+        container.innerHTML = '<p class="text-gray-500">조건에 맞는 카메라가 없습니다.</p>';
+        return;
+      }
+
+      cameras.forEach(cam => {
+        const card = document.createElement('div');
+        card.className = 'border p-4 rounded shadow bg-white';
+        card.innerHTML = `
+          <h2 class="text-xl font-bold mb-2">${cam.name}</h2>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li><strong>센서:</strong> ${cam.sensor || '정보 없음'}</li>
+            <li><strong>RAW:</strong> ${cam.raw ? '지원' : '비지원'}</li>
+            <li><strong>무게:</strong> ${cam.weight ? cam.weight + 'g' : '정보 없음'}</li>
+            <li><strong>가격:</strong> ${cam.price ? cam.price.toLocaleString() + '원' : '정보 없음'}</li>
+            <li><strong>유형:</strong> ${cam.type || '기타'}</li>
+          </ul>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    window.onload = loadCameras;
+  </script>
 </body>
 </html>
