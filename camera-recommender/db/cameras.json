@@ -1,0 +1,186 @@
+[
+  {
+    "name": "Fujifilm X100",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 10,
+    "type": "Unknown"
+  },
+  {
+    "name": "Fujifilm X100F",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 10,
+    "type": "Unknown"
+  },
+  {
+    "name": "Fujifilm X100S",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 10,
+    "type": "Unknown"
+  },
+  {
+    "name": "Fujifilm X100T",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 10,
+    "type": "Unknown"
+  },
+  {
+    "name": "Fujifilm X100V",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 10,
+    "type": "Unknown"
+  },
+  {
+    "name": "Fujifilm X100VI",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 10,
+    "type": "Unknown"
+  },
+  {
+    "name": "Fujifilm X70",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 340,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica Q2",
+    "price": null,
+    "raw": false,
+    "sensor": "Full frame",
+    "weight": null,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica Q3",
+    "price": null,
+    "raw": false,
+    "sensor": "Full frame",
+    "weight": null,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica Q3 43",
+    "price": 9080500,
+    "raw": false,
+    "sensor": "Full frame",
+    "weight": 772,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica X",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 486,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica X Vario",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 680,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica X-U",
+    "price": 3835000,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 635,
+    "type": "Unknown"
+  },
+  {
+    "name": "Leica X1",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 306,
+    "type": "Unknown"
+  },
+  {
+    "name": "Nikon Coolpix A",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 1,
+    "type": "Unknown"
+  },
+  {
+    "name": "Ricoh GR II",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 245,
+    "type": "Unknown"
+  },
+  {
+    "name": "Ricoh GR III",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 245,
+    "type": "Unknown"
+  },
+  {
+    "name": "Ricoh GR IIIx",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 245,
+    "type": "Unknown"
+  },
+  {
+    "name": "Sigma DP1s",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 270,
+    "type": "Unknown"
+  },
+  {
+    "name": "Sigma DP1x",
+    "price": 1040000,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 250,
+    "type": "Unknown"
+  },
+  {
+    "name": "Sigma DP2x",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 280,
+    "type": "Unknown"
+  },
+  {
+    "name": "Sigma dp0 Quattro",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 500,
+    "type": "Unknown"
+  },
+  {
+    "name": "Sigma dp2 Quattro",
+    "price": null,
+    "raw": false,
+    "sensor": "APS-C",
+    "weight": 395,
+    "type": "Unknown"
+  }
+]
